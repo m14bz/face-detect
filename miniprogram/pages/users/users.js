@@ -18,6 +18,10 @@ Page({
   onLoad() {
     this.loadUsers();
   },
+  
+  onShow() {
+    this.loadUsers();
+  },
 
   // 加载用户列表
   async loadUsers() {

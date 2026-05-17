@@ -10,6 +10,10 @@ const connect = () => {
     return;
   }
   
+  // 后端暂不支持原生WebSocket，使用HTTP轮询替代
+  console.log('WebSocket暂未启用，使用HTTP轮询模式');
+  return;
+  
   socketTask = wx.connectSocket({
     url: config.wsUrl,
     success: () => {

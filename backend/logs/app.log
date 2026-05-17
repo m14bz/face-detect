@@ -571,3 +571,30 @@
 2026-05-17 13:15:46,391 - werkzeug - WARNING -  * Debugger is active!
 2026-05-17 13:15:46,398 - werkzeug - INFO -  * Debugger PIN: 124-524-510
 2026-05-17 13:15:47,208 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\utils\\__init__.py', reloading
+2026-05-17 13:15:47,477 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-05-17 13:15:48,161 - werkzeug - WARNING -  * Debugger is active!
+2026-05-17 13:15:48,166 - werkzeug - INFO -  * Debugger PIN: 124-524-510
+2026-05-17 13:15:48,344 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\utils\\response.py', reloading
+2026-05-17 13:15:48,805 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\models\\log.py', reloading
+2026-05-17 13:15:48,809 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\models\\user.py', reloading
+2026-05-17 13:15:49,270 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-05-17 13:15:50,604 - werkzeug - WARNING -  * Debugger is active!
+2026-05-17 13:15:50,613 - werkzeug - INFO -  * Debugger PIN: 124-524-510
+2026-05-17 13:15:50,866 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\routes\\auth.py', reloading
+2026-05-17 13:15:50,868 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\routes\\strangers.py', reloading
+2026-05-17 13:15:50,872 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\websocket\\__init__.py', reloading
+2026-05-17 13:15:51,104 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\services\\notify_service.py', reloading
+2026-05-17 13:15:51,106 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\websocket\\events.py', reloading
+2026-05-17 13:15:51,534 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\database\\__init__.py', reloading
+2026-05-17 13:15:51,538 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\models\\face.py', reloading
+2026-05-17 13:15:51,562 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\routes\\devices.py', reloading
+2026-05-17 13:15:51,566 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\routes\\logs.py', reloading
+2026-05-17 13:15:51,568 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\Desktop\\摄像头人脸识别\\backend\\routes\\users.py', reloading
+2026-05-17 13:15:51,710 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-05-17 13:15:52,489 - werkzeug - WARNING -  * Debugger is active!
+2026-05-17 13:15:52,496 - werkzeug - INFO -  * Debugger PIN: 124-524-510
+2026-05-17 14:02:26,317 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\anaconda3\\Scripts\\conda-script.py', reloading
+2026-05-17 14:02:27,289 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-05-17 14:02:27,961 - werkzeug - WARNING -  * Debugger is active!
+2026-05-17 14:02:27,966 - werkzeug - INFO -  * Debugger PIN: 124-524-510
+2026-05-17 14:04:13,431 - werkzeug - INFO - 127.0.0.1 - - [17/May/2026 14:04:13] "GET /api/users HTTP/1.1" 200 -

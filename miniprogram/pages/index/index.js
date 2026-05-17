@@ -17,6 +17,7 @@ Page({
   },
 
   onShow() {
+    this.checkLoginStatus();
     if (this.data.isLoggedIn) {
       this.loadData();
     }

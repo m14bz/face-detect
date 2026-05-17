@@ -61,9 +61,6 @@ Page({
         storage.setUserInfo(res.data.user);
         storage.setUserId(res.data.user.user_id);
         
-        // 连接WebSocket
-        websocket.connect();
-        
         this.setData({
           isLoggedIn: true,
           userInfo: res.data.user,
@@ -71,8 +68,16 @@ Page({
         });
         
         wx.showToast({
-          title: '登录成功'
+          title: '登录成功',
+          duration: 1000
         });
+        
+        // 登录成功后跳转到首页
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/index/index'
+          });
+        }, 1000);
       } else {
         wx.showToast({
           title: res.message || '登录失败',

@@ -1,12 +1,12 @@
 // config/config.js
 const config = {
   // API基础地址
-  // 注意:小程序不能使用 localhost,必须使用真实的 IP 地址
-  // 确保手机和电脑在同一个局域网内
-  baseUrl: 'http://192.168.1.163:5000',
+  // 注意:模拟器中使用127.0.0.1，真机中使用电脑的局域网IP
+  // 开发阶段使用127.0.0.1，发布前改为真实IP
+  baseUrl: 'http://127.0.0.1:5000',
   
   // WebSocket地址
-  wsUrl: 'ws://192.168.1.163:5000',
+  wsUrl: 'ws://127.0.0.1:5000',
   
   // Token存储键
   tokenKey: 'token',

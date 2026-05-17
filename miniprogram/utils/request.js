@@ -1,25 +1,14 @@
 const config = require('../config/config');
 
-const REQUEST_TIMEOUT = 15000; // 15秒超时
+const REQUEST_TIMEOUT = 30000; // 30秒超时
 
 const request = (url, method = 'GET', data = {}) => {
+  const fullUrl = `${config.baseUrl}${url}`;
+  console.log(`[Request] ${method} ${fullUrl}`, data);
+  
   return new Promise((resolve, reject) => {
-    let isTimeout = false;
-    let timer = null;
-    
-    // 超时处理
-    timer = setTimeout(() => {
-      isTimeout = true;
-      wx.showToast({
-        title: '请求超时，请检查网络',
-        icon: 'none',
-        duration: 2000
-      });
-      reject({ code: 'TIMEOUT', message: '请求超时' });
-    }, REQUEST_TIMEOUT);
-    
     wx.request({
-      url: `${config.baseUrl}${url}`,
+      url: fullUrl,
       method: method,
       data: data,
       timeout: REQUEST_TIMEOUT,
@@ -28,13 +17,11 @@ const request = (url, method = 'GET', data = {}) => {
         'Authorization': `Bearer ${wx.getStorageSync(config.tokenKey)}`
       },
       success: (res) => {
-        if (isTimeout) return;
-        clearTimeout(timer);
+        console.log(`[Request] ${method} ${url} 响应:`, res.statusCode, res.data);
         
         if (res.statusCode === 200) {
           resolve(res.data);
         } else if (res.statusCode === 401) {
-          // Token过期或无效，跳转登录
           wx.removeStorageSync(config.tokenKey);
           wx.removeStorageSync(config.userInfoKey);
           wx.redirectTo({
@@ -47,14 +34,7 @@ const request = (url, method = 'GET', data = {}) => {
         }
       },
       fail: (err) => {
-        if (isTimeout) return;
-        clearTimeout(timer);
-        
-        console.error(`[Request] ${method} ${url} error:`, err);
-        wx.showToast({
-          title: '网络连接失败',
-          icon: 'none'
-        });
+        console.error(`[Request] ${method} ${url} 失败:`, err);
         reject(err);
       }
     });
