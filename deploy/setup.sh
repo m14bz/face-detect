@@ -102,8 +102,28 @@ echo "[8/8] 配置 Nginx..."
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/sites-available/smart-access
 ln -sf /etc/nginx/sites-available/smart-access /etc/nginx/sites-enabled/
 rm -f /etc/nginx/sites-enabled/default
+
+# 停止可能占用 80 端口的其他服务
+echo "检查并释放 80 端口..."
+if systemctl is-active --quiet apache2 2>/dev/null; then
+    echo "停止 Apache 服务..."
+    systemctl stop apache2
+    systemctl disable apache2
+fi
+
+# 检查端口占用
+if ss -tlnp | grep -q ':80 '; then
+    echo "端口 80 被占用，占用进程："
+    ss -tlnp | grep ':80 '
+    # 尝试停止并重新启动 nginx
+    systemctl stop nginx 2>/dev/null || true
+    fuser -k 80/tcp 2>/dev/null || true
+    sleep 1
+fi
+
 nginx -t
 systemctl restart nginx
+systemctl status nginx --no-pager || true
 
 # 10. 配置防火墙
 echo ""
