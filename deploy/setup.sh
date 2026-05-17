@@ -60,7 +60,7 @@ echo "[4/8] 配置 Python 虚拟环境..."
 cd $DEPLOY_DIR/backend
 python3 -m venv venv
 source venv/bin/activate
-pip install --upgrade pip
+pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 
 # 6. 初始化数据库
