@@ -1,0 +1,95 @@
+<!--pages/users/users.wxml-->
+<view class="container">
+  <!-- 添加按钮 -->
+  <view class="card">
+    <van-button type="primary" block bindtap="showAddForm">添加用户</van-button>
+  </view>
+
+  <!-- 用户列表 -->
+  <view class="card">
+    <view class="section-title">用户列表</view>
+    
+    <view wx:if="{{users.length === 0 && !loading}}" class="empty-container">
+      <view class="text-muted">暂无用户</view>
+    </view>
+    
+    <view wx:else>
+      <view class="user-item" wx:for="{{users}}" wx:key="user_id">
+        <view class="user-info">
+          <view class="user-name">{{item.name}}</view>
+          <view class="user-phone text-muted">{{item.phone}}</view>
+          <view class="user-permission">
+            <view class="status-tag {{item.permission === 'admin' ? 'status-online' : (item.permission === 'blacklist' ? 'status-offline' : 'status-pending')}}">
+              {{item.permission === 'admin' ? '管理员' : (item.permission === 'blacklist' ? '黑名单' : '普通用户')}}
+            </view>
+          </view>
+        </view>
+        <view class="user-actions">
+          <van-button 
+            type="primary" 
+            size="small" 
+            bindtap="showEditForm"
+            data-user="{{item}}">
+            编辑
+          </van-button>
+          <van-button 
+            type="danger" 
+            size="small" 
+            custom-style="margin-left: 10rpx;"
+            bindtap="deleteUser"
+            data-id="{{item.user_id}}">
+            删除
+          </van-button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <van-loading type="spinner" />
+  </view>
+
+  <!-- 添加/编辑表单弹窗 -->
+  <view class="form-mask" wx:if="{{showForm}}" bindtap="hideForm"></view>
+  <view class="form-popup" wx:if="{{showForm}}">
+    <view class="form-header">
+      <text class="form-title">{{isEdit ? '编辑用户' : '添加用户'}}</text>
+      <text class="form-close" bindtap="hideForm">✕</text>
+    </view>
+    <view class="form-body">
+      <view class="form-item">
+        <text class="form-label">姓名</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入姓名"
+          value="{{form.name}}"
+          bindinput="onInputName" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">手机号</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入手机号"
+          type="number"
+          value="{{form.phone}}"
+          bindinput="onInputPhone" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">权限</text>
+        <picker 
+          range="{{permissionOptions}}" 
+          value="{{form.permission}}"
+          bindchange="onPermissionChange">
+          <view class="form-picker">
+            {{form.permission === 'admin' ? '管理员' : (form.permission === 'blacklist' ? '黑名单' : '普通用户')}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-footer">
+      <van-button type="default" bindtap="hideForm">取消</van-button>
+      <van-button type="primary" bindtap="saveUser">保存</van-button>
+    </view>
+  </view>
+</view>

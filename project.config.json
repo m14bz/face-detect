@@ -1,0 +1,35 @@
+{
+  "description": "项目配置文件",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "setting": {
+    "es6": true,
+    "postcss": false,
+    "minified": true,
+    "uglifyFileName": true,
+    "enhance": true,
+    "urlCheck": false,
+    "compileHotReLoad": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "miniprogram/package.json",
+        "miniprogramNpmDistDir": "miniprogram/"
+      }
+    ],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx4a5e6ebfbdee731f",
+  "editorSetting": {},
+  "srcMiniprogramRoot": "miniprogram/"
+}

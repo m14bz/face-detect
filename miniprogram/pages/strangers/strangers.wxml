@@ -1,0 +1,77 @@
+<!--pages/strangers/strangers.wxml-->
+<view class="container">
+  <!-- 标签切换 -->
+  <view class="tabs-container">
+    <view 
+      class="tab-item {{activeTab === item.key ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="key"
+      data-tab="{{item.key}}"
+      bindtap="onTabChange">
+      {{item.title}}
+    </view>
+  </view>
+
+  <!-- 陌生人列表 -->
+  <view class="card">
+    <view wx:if="{{strangers.length === 0 && !loading}}" class="empty-container">
+      <view class="text-muted">暂无记录</view>
+    </view>
+    
+    <view wx:else>
+      <view class="stranger-item" wx:for="{{strangers}}" wx:key="record_id">
+        <view class="stranger-image">
+          <image 
+            wx:if="{{item.image_path}}" 
+            src="{{item.image_path}}" 
+            mode="aspectFill" 
+            class="preview-image" />
+          <view wx:else class="no-image">📷</view>
+        </view>
+        <view class="stranger-info">
+          <view class="stranger-time">
+            <text class="text-muted">检测时间：</text>
+            <text>{{item.captured_at}}</text>
+          </view>
+          <view class="stranger-status" wx:if="{{item.status !== 'pending'}}">
+            <text class="text-muted">处理状态：</text>
+            <text class="{{item.status === 'approved' ? 'text-success' : 'text-danger'}}">
+              {{item.status === 'approved' ? '已授权' : '已拒绝'}}
+            </text>
+          </view>
+          <view class="stranger-processor" wx:if="{{item.processor_name}}">
+            <text class="text-muted">处理人：</text>
+            <text>{{item.processor_name}}</text>
+          </view>
+        </view>
+        <view class="stranger-actions" wx:if="{{item.status === 'pending'}}">
+          <van-button 
+            type="primary" 
+            size="small" 
+            bindtap="approveStranger"
+            data-id="{{item.record_id}}">
+            授权
+          </van-button>
+          <van-button 
+            type="danger" 
+            size="small" 
+            custom-style="margin-left: 10rpx;"
+            bindtap="rejectStranger"
+            data-id="{{item.record_id}}">
+            拒绝
+          </van-button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <van-loading type="spinner" />
+  </view>
+  
+  <!-- 没有更多数据 -->
+  <view class="text-muted" style="text-align: center; padding: 20rpx;" wx:if="{{!hasMore && strangers.length > 0}}">
+    没有更多数据了
+  </view>
+</view>

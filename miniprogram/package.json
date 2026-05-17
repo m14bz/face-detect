@@ -1,0 +1,8 @@
+{
+  "name": "smart-access-miniprogram",
+  "version": "1.0.0",
+  "description": "智慧门禁系统小程序",
+  "dependencies": {
+    "@vant/weapp": "^1.11.0"
+  }
+}

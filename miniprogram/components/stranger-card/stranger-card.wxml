@@ -1,0 +1,42 @@
+<!--components/stranger-card/stranger-card.wxml-->
+<view class="stranger-card">
+  <view class="stranger-image">
+    <image 
+      wx:if="{{stranger.image_path}}" 
+      src="{{stranger.image_path}}" 
+      mode="aspectFill" 
+      class="preview-image" />
+    <view wx:else class="no-image">📷</view>
+  </view>
+  <view class="stranger-info">
+    <view class="stranger-time">
+      <text class="text-muted">检测时间：</text>
+      <text>{{stranger.captured_at}}</text>
+    </view>
+    <view class="stranger-status" wx:if="{{stranger.status !== 'pending'}}">
+      <text class="text-muted">处理状态：</text>
+      <text class="{{stranger.status === 'approved' ? 'text-success' : 'text-danger'}}">
+        {{stranger.status === 'approved' ? '已授权' : '已拒绝'}}
+      </text>
+    </view>
+    <view class="stranger-processor" wx:if="{{stranger.processor_name}}">
+      <text class="text-muted">处理人：</text>
+      <text>{{stranger.processor_name}}</text>
+    </view>
+  </view>
+  <view class="stranger-actions" wx:if="{{showActions && stranger.status === 'pending'}}">
+    <van-button 
+      type="primary" 
+      size="small" 
+      bindtap="onApprove">
+      授权
+    </van-button>
+    <van-button 
+      type="danger" 
+      size="small" 
+      custom-style="margin-left: 10rpx;"
+      bindtap="onReject">
+      拒绝
+    </van-button>
+  </view>
+</view>

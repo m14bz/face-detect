@@ -1,0 +1,69 @@
+<!--pages/logs/logs.wxml-->
+<view class="container">
+  <!-- 日期筛选 -->
+  <view class="card filter-card">
+    <view class="filter-row">
+      <picker mode="date" bindchange="onDateChange" data-type="start">
+        <view class="filter-item">
+          <text class="text-muted">开始日期：</text>
+          <text>{{startDate || '选择日期'}}</text>
+        </view>
+      </picker>
+      <picker mode="date" bindchange="onDateChange" data-type="end">
+        <view class="filter-item">
+          <text class="text-muted">结束日期：</text>
+          <text>{{endDate || '选择日期'}}</text>
+        </view>
+      </picker>
+      <view class="filter-item clear-btn" bindtap="clearDateFilter" wx:if="{{startDate || endDate}}">
+        <text class="text-primary">清除</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="card">
+    <view class="section-title">开门记录</view>
+    
+    <view wx:if="{{logs.length === 0 && !loading}}" class="empty-container">
+      <view class="text-muted">暂无记录</view>
+    </view>
+    
+    <view wx:else>
+      <view class="log-item" wx:for="{{logs}}" wx:key="log_id">
+        <view class="log-avatar">
+          <text wx:if="{{item.person_type === 'known'}}">👤</text>
+          <text wx:else>❓</text>
+        </view>
+        <view class="log-content">
+          <view class="log-header">
+            <text class="log-person">{{item.person_name || '陌生人'}}</text>
+            <view class="status-tag {{item.result === 'success' ? 'status-online' : 'status-offline'}}">
+              {{item.result === 'success' ? '成功' : '失败'}}
+            </view>
+          </view>
+          <view class="log-info">
+            <view class="log-time">
+              <text class="text-muted">时间：</text>
+              <text>{{item.access_time}}</text>
+            </view>
+            <view class="log-device">
+              <text class="text-muted">设备：</text>
+              <text>{{item.device_name || '未知设备'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <van-loading type="spinner" />
+  </view>
+  
+  <!-- 没有更多数据 -->
+  <view class="text-muted" style="text-align: center; padding: 20rpx;" wx:if="{{!hasMore && logs.length > 0}}">
+    没有更多数据了
+  </view>
+</view>

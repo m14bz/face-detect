@@ -1,0 +1,91 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 未登录提示 -->
+  <view class="login-tip" wx:if="{{!isLoggedIn}}">
+    <view class="card">
+      <view class="section-title">欢迎使用智慧门禁系统</view>
+      <view class="text-muted">请先登录以使用完整功能</view>
+      <van-button type="primary" bindtap="goToLogin" custom-style="margin-top: 20rpx;">去登录</van-button>
+    </view>
+  </view>
+
+  <!-- 已登录显示内容 -->
+  <view wx:else>
+    <!-- 用户信息卡片 -->
+    <view class="card user-card">
+      <view class="user-info">
+        <view class="user-avatar">👤</view>
+        <view class="user-detail">
+          <view class="user-name">{{userInfo.name}}</view>
+          <view class="user-phone text-muted">{{userInfo.phone}}</view>
+        </view>
+      </view>
+      <view class="stats-row">
+        <view class="stat-item">
+          <view class="stat-value text-primary">{{devices.length}}</view>
+          <view class="stat-label text-muted">设备数</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value text-warning">{{strangerCount}}</view>
+          <view class="stat-label text-muted">待审核</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 设备列表 -->
+    <view class="card">
+      <view class="section-title">设备列表</view>
+      <view wx:if="{{devices.length === 0}}" class="empty-container">
+        <view class="text-muted">暂无设备</view>
+      </view>
+      <view wx:else>
+        <view class="device-item" wx:for="{{devices}}" wx:key="device_id">
+          <view class="device-info">
+            <view class="device-name">{{item.device_name}}</view>
+            <view class="device-location text-muted">{{item.location || '未知位置'}}</view>
+          </view>
+          <view class="device-actions">
+            <view class="status-tag {{item.status === 'online' ? 'status-online' : 'status-offline'}}">
+              {{item.status === 'online' ? '在线' : '离线'}}
+            </view>
+            <van-button 
+              type="primary" 
+              size="small" 
+              custom-style="margin-left: 10rpx;"
+              bindtap="openDoor"
+              data-id="{{item.device_id}}"
+              disabled="{{item.status !== 'online'}}">
+              开门
+            </van-button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最近记录 -->
+    <view class="card">
+      <view class="section-title">最近记录</view>
+      <view wx:if="{{recentLogs.length === 0}}" class="empty-container">
+        <view class="text-muted">暂无记录</view>
+      </view>
+      <view wx:else>
+        <view class="log-item" wx:for="{{recentLogs}}" wx:key="log_id">
+          <view class="log-info">
+            <view class="log-person">{{item.person_name || '陌生人'}}</view>
+            <view class="log-time text-muted">{{item.access_time}}</view>
+          </view>
+          <view class="log-result">
+            <view class="status-tag {{item.result === 'success' ? 'status-online' : 'status-offline'}}">
+              {{item.result === 'success' ? '成功' : '失败'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <van-loading type="spinner" />
+  </view>
+</view>

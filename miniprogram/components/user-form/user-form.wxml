@@ -1,0 +1,42 @@
+<!--components/user-form/user-form.wxml-->
+<view class="user-form-mask" wx:if="{{show}}" bindtap="onClose"></view>
+<view class="user-form-popup" wx:if="{{show}}">
+  <view class="form-header">
+    <text class="form-title">{{user ? '编辑用户' : '添加用户'}}</text>
+    <text class="form-close" bindtap="onClose">✕</text>
+  </view>
+  <view class="form-body">
+    <view class="form-item">
+      <text class="form-label">姓名</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入姓名"
+        value="{{form.name}}"
+        bindinput="onInputName" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入手机号"
+        type="number"
+        value="{{form.phone}}"
+        bindinput="onInputPhone" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">权限</text>
+      <picker 
+        range="{{permissionOptions}}" 
+        value="{{form.permission}}"
+        bindchange="onPermissionChange">
+        <view class="form-picker">
+          {{form.permission === 'admin' ? '管理员' : (form.permission === 'blacklist' ? '黑名单' : '普通用户')}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="form-footer">
+    <van-button type="default" bindtap="onClose">取消</van-button>
+    <van-button type="primary" bindtap="onSave">保存</van-button>
+  </view>
+</view>

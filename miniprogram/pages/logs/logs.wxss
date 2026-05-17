@@ -1,0 +1,59 @@
+/* pages/logs/logs.wxss */
+.filter-card {
+  padding: 20rpx;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-item {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.clear-btn {
+  color: #1890ff;
+}
+
+.log-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-avatar {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.log-content {
+  flex: 1;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.log-person {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.log-info {
+  font-size: 24rpx;
+}
+
+.log-time, .log-device {
+  margin-bottom: 6rpx;
+}

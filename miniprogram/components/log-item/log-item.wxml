@@ -1,0 +1,25 @@
+<!--components/log-item/log-item.wxml-->
+<view class="log-item">
+  <view class="log-avatar">
+    <text wx:if="{{log.person_type === 'known'}}">👤</text>
+    <text wx:else>❓</text>
+  </view>
+  <view class="log-content">
+    <view class="log-header">
+      <text class="log-person">{{log.person_name || '陌生人'}}</text>
+      <view class="status-tag {{log.result === 'success' ? 'status-online' : 'status-offline'}}">
+        {{log.result === 'success' ? '成功' : '失败'}}
+      </view>
+    </view>
+    <view class="log-info">
+      <view class="log-time">
+        <text class="text-muted">时间：</text>
+        <text>{{log.access_time}}</text>
+      </view>
+      <view class="log-device">
+        <text class="text-muted">设备：</text>
+        <text>{{log.device_name || '未知设备'}}</text>
+      </view>
+    </view>
+  </view>
+</view>
