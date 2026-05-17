@@ -684,3 +684,7 @@
 2026-05-17 22:21:06,264 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
 2026-05-17 22:21:07,356 - werkzeug - WARNING -  * Debugger is active!
 2026-05-17 22:21:07,364 - werkzeug - INFO -  * Debugger PIN: 124-524-510
+2026-05-17 23:41:05,813 - werkzeug - INFO -  * Detected change in 'C:\\Users\\26457\\anaconda3\\Scripts\\conda-script.py', reloading
+2026-05-17 23:41:06,535 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-05-17 23:41:07,265 - werkzeug - WARNING -  * Debugger is active!
+2026-05-17 23:41:07,270 - werkzeug - INFO -  * Debugger PIN: 124-524-510
