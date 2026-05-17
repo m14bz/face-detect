@@ -39,6 +39,12 @@
         "text": "用户",
         "iconPath": "images/user.png",
         "selectedIconPath": "images/user-active.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置",
+        "iconPath": "images/settings.png",
+        "selectedIconPath": "images/settings-active.png"
       }
     ]
   },

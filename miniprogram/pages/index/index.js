@@ -84,9 +84,9 @@ Page({
     });
   },
 
-  // 跳转到登录页
+  // 跳转到登录页（设置页是tabBar页面，用switchTab）
   goToLogin() {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/settings/settings'
     });
   },

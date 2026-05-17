@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Access System - Flask Backend
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/smart-access/backend
+Environment="PATH=/var/www/smart-access/backend/venv/bin"
+ExecStart=/var/www/smart-access/backend/venv/bin/gunicorn -c gunicorn_config.py app:app
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
